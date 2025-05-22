@@ -4,3 +4,5 @@ donnie;perro789
 kitty;miau321
 isi;chao987
 xiao;ola123
+alonso;alonso123
+alonso;perre123

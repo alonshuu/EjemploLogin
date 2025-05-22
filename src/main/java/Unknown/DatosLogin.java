@@ -12,13 +12,13 @@ public class DatosLogin {
 
 
     public DatosLogin() {
-        cargarUsuarios();
+        cargarUsuarios("login.txt");
     }
 
 
-    private void cargarUsuarios() {
+    public void cargarUsuarios(String archivo) {
         try (BufferedReader reader = new BufferedReader(
-                new InputStreamReader(getClass().getClassLoader().getResourceAsStream("login.txt")))) {
+                new InputStreamReader(getClass().getClassLoader().getResourceAsStream(archivo)))) {
             String linea;
             while ((linea = reader.readLine()) != null) {
                 linea = linea.trim();

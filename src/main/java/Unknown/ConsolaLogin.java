@@ -55,6 +55,7 @@ public class ConsolaLogin {
         String usuario = scanner.next();
         System.out.println("Ingrese la clave por favor");
         String contrasena = scanner.next();
+
         if (login.auntenticar(usuario, contrasena, datos)){
             System.out.println("Login Exitoso!");
             return;

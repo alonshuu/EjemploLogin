@@ -22,10 +22,17 @@ class ConsolaLoginTest {
         assertTrue(login.auntenticar("xiao","ola123",datos));
     }
 
-
     @Test
     public void LoginInvalido() {
         assertFalse(login.auntenticar("testusuario","testclave",datos));
+    }
+    @Test
+    public void LoginClaveInvalida(){
+        assertFalse(login.auntenticar("xiao","clave123",datos));
+    }
+    @Test
+    public void usuarioRepetido(){
+        assertEquals(login.auntenticar("alonso","alonso123",datos),login.auntenticar("alonso","perre123",datos));
     }
 
 }
