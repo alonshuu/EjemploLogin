@@ -15,7 +15,10 @@ public class ConsolaLogin {
      * Controla el ciclo principal del menú del sistema.
      */
     public void menu() {
-        // TODO: Implementar ciclo del menú principal
+        mostrarOpciones();
+        Scanner scanner = new Scanner(System.in);
+        String opcion = scanner.nextLine();
+        ejecutarOpcion(opcion);
     }
 
     /**
@@ -34,6 +37,7 @@ public class ConsolaLogin {
     private void ejecutarOpcion(String opcion) {
         switch (opcion) {
             case "1":
+                manejarLogin();
                 break;
             case "2":
                 break;
@@ -47,9 +51,14 @@ public class ConsolaLogin {
      */
     private void manejarLogin() {
         Scanner scanner = new Scanner(System.in);
-        String usuario = scanner.nextLine();
+        System.out.println("Ingrese el usuario por favor");
+        String usuario = scanner.next();
+        System.out.println("Ingrese la clave por favor");
         String contrasena = scanner.next();
-        login.auntenticar(usuario, contrasena, datos);
-
+        if (login.auntenticar(usuario, contrasena, datos)){
+            System.out.println("Login Exitoso!");
+            return;
+        }
+        System.out.println("Usuario o clave incorrecta");
     }
 }

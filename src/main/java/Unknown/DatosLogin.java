@@ -10,7 +10,13 @@ public class DatosLogin {
     public ArrayList<String> credenciales = new ArrayList<>();
 
 
-    private void cargarUsuarios() throws IOException {
+
+    public DatosLogin() {
+        cargarUsuarios();
+    }
+
+
+    private void cargarUsuarios() {
         try (BufferedReader reader = new BufferedReader(
                 new InputStreamReader(getClass().getClassLoader().getResourceAsStream("login.txt")))) {
             String linea;
