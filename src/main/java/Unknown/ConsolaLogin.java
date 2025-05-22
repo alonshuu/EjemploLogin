@@ -49,7 +49,7 @@ public class ConsolaLogin {
     /**
      * Solicita usuario y contraseña, y muestra el resultado.
      */
-    private void manejarLogin() {
+    public void manejarLogin() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Ingrese el usuario por favor");
         String usuario = scanner.next();
