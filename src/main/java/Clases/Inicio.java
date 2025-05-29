@@ -1,4 +1,6 @@
-package Unknown;
+package Clases;
+
+import Vista.ConsolaLogin;
 
 public class Inicio {
     public static void main(String[] args) {

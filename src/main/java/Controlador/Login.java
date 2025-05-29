@@ -1,4 +1,6 @@
-package Unknown;
+package Controlador;
+
+import Modelo.DatosLogin;
 
 public class Login {
 

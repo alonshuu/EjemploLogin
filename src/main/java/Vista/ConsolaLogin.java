@@ -1,4 +1,7 @@
-package Unknown;
+package Vista;
+
+import Controlador.Login;
+import Modelo.DatosLogin;
 
 import java.util.Scanner;
 
@@ -15,10 +18,20 @@ public class ConsolaLogin {
      * Controla el ciclo principal del menú del sistema.
      */
     public void menu() {
-        mostrarOpciones();
-        Scanner scanner = new Scanner(System.in);
-        String opcion = scanner.nextLine();
-        ejecutarOpcion(opcion);
+        String opcion = "";
+        do {
+            mostrarOpciones();
+            opcion = scanner.nextLine();
+            ejecutarOpcion(opcion);
+        } while (!opcion.equals("2"));
+
+        System.out.println("Saliendo del programa....");
+        System.out.println(".......");
+        System.out.println("....");
+        System.out.println("..");
+
+
+
     }
 
     /**
