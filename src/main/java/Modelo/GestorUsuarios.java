@@ -1,33 +1,84 @@
 package Modelo;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 
-
+/**
+ * Permite registrar nuevos usuarios en el sistema.
+ */
 public class GestorUsuarios {
-    private final String archivo = "login.txt";
 
-    public GestorUsuarios() {
-        File file = new File(archivo);
-        if (!file.exists()) {
+    private final String archivoUsuarios;
+
+    public GestorUsuarios(String archivoUsuarios) {
+        this.archivoUsuarios = archivoUsuarios;
+        verificarOCrearArchivo();
+    }
+
+    /**
+     * Verifica si el archivo de usuarios existe, y si no, lo crea vacío.
+     */
+    private void verificarOCrearArchivo() {
+        File archivo = new File(archivoUsuarios);
+        if (!archivo.exists()) {
             try {
-                file.createNewFile();
-                System.out.println("Archivo creado: " + archivo);
+                archivo.createNewFile();
+                System.out.println("Archivo de usuarios creado: " + archivoUsuarios);
             } catch (IOException e) {
-                System.out.println("Error al crear el archivo: " + e.getMessage());
+                System.out.println("Error al crear el archivo de usuarios: " + e.getMessage());
             }
         }
     }
 
+    /**
+     * Registra un nuevo usuario escribiéndolo en el archivo.
+     * No valida duplicados (se asume que la vista lo controla).
+     *
+     * @param usuario nombre de usuario
+     * @param clave contraseña
+     * @return true si se registró correctamente, false si hubo un error
+     */
     public boolean registrar(String usuario, String clave) {
-        try (FileWriter fw = new FileWriter(archivo, true)) {
+        if (usuarioExiste(usuario)) {
+            return false;
+        }
+
+        try (FileWriter fw = new FileWriter(archivoUsuarios, true)) {
             fw.write(usuario + ";" + clave + "\n");
             return true;
         } catch (IOException e) {
-            System.out.println("Error al escribir en el archivo: " + e.getMessage());
+            System.out.println("Error al registrar usuario: " + e.getMessage());
             return false;
         }
     }
+
+    /**
+     * Verifica si el usuario ya existe en el archivo.
+     */
+    private boolean usuarioExiste(String usuario) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(archivoUsuarios))) {
+            String linea;
+            while ((linea = reader.readLine()) != null) {
+                linea = linea.trim();
+                if (linea.isEmpty() || !linea.contains(";")) continue;
+
+                String[] partes = linea.split(";");
+                if (partes.length == 2 && partes[0].equals(usuario)) {
+                    return true;
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Error al leer el archivo de usuarios: " + e.getMessage());
+        }
+        return false;
+    }
 }
+
+
+
+
+
+
+
+
+
 
