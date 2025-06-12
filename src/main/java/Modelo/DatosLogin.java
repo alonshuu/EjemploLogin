@@ -4,20 +4,12 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Maneja la carga de credenciales desde el archivo login.txt
- * utilizando objetos Usuario.
- */
+
 public class DatosLogin {
 
     private final String archivoUsuarios;
-    private final List<Usuario> usuarios;
+    private final ArrayList<Usuario> usuarios;
 
-    /**
-     * Constructor que inicializa el nombre del archivo y carga los usuarios.
-     *
-     * @param archivoUsuarios nombre del archivo de credenciales
-     */
     public DatosLogin(String archivoUsuarios) {
         this.archivoUsuarios = archivoUsuarios;
         this.usuarios = new ArrayList<>();
@@ -25,9 +17,6 @@ public class DatosLogin {
         cargarUsuarios();
     }
 
-    /**
-     * Verifica si el archivo existe, y si no, lo crea vacío.
-     */
     private void verificarOCrearArchivo() {
         File archivo = new File(archivoUsuarios);
         if (!archivo.exists()) {
@@ -40,9 +29,6 @@ public class DatosLogin {
         }
     }
 
-    /**
-     * Carga los usuarios desde el archivo.
-     */
     private void cargarUsuarios() {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(getClass().getClassLoader().getResourceAsStream(archivoUsuarios)))) {
             String linea;

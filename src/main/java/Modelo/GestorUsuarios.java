@@ -28,20 +28,10 @@ public class GestorUsuarios {
             }
         }
     }
-
-    /**
-     * Registra un nuevo usuario escribiéndolo en el archivo.
-     * No valida duplicados (se asume que la vista lo controla).
-     *
-     * @param usuario nombre de usuario
-     * @param clave contraseña
-     * @return true si se registró correctamente, false si hubo un error
-     */
     public boolean registrar(String usuario, String clave) {
         if (usuarioExiste(usuario)) {
             return false;
         }
-
         try (FileWriter fw = new FileWriter(archivoUsuarios, true)) {
             fw.write(usuario + ";" + clave + "\n");
             return true;
@@ -51,9 +41,6 @@ public class GestorUsuarios {
         }
     }
 
-    /**
-     * Verifica si el usuario ya existe en el archivo.
-     */
     private boolean usuarioExiste(String usuario) {
         try (BufferedReader reader = new BufferedReader(new FileReader(archivoUsuarios))) {
             String linea;
